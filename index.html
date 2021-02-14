@@ -61,6 +61,16 @@
             alert('---Warning---\nOver 100kb');
           }
 
+
+          // https://github.com/n138-kz/GetRandStr/blob/master/sample/index.html
+          if (location.protocol=="https:") {
+            try {
+              var promise = navigator.clipboard.writeText(dataURL);
+              console.debug(promise);
+            } catch(e) {
+              console.debug(e);
+            }
+          }
         });
       });
     </script>
