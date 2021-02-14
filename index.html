@@ -31,6 +31,11 @@
         document.getElementById('canvas0_toPNG').addEventListener('click', function() {
           var png = canvas.toDataURL();
           console.log(png);
+
+          var myMain = document.getElementById("canvas0_wrapper");
+          var newImg = document.createElement('img');
+          newImg.setAttribute('src', png);
+          myMain.parentNode.insertBefore(newImg, myMain.nextElementSibling);
         });
       });
     </script>
