@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+  // Inspire from
+  // - https://www.kabanoki.net/934/
+  // ------------------------------
   // キャンバスオブジェクト
   var canvas = document.getElementById('canvas0');
   var ctx = canvas.getContext('2d');
