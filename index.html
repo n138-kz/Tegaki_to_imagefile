@@ -7,8 +7,6 @@
       canvas
       {
         border: 1px solid black;
-        width: 500px;
-        height: 500px;
         z-index: 1;
         text-align: center;
         margin: 0 auto;
@@ -16,7 +14,7 @@
     </style>
   </head>
   <script type="text/javascript">
-    window.onload = function(){
+    document.addEventListener("DOMContentLoaded", function() {
       // キャンバスオブジェクト
       var canvas = document.getElementById('canvas0');
       var ctx = canvas.getContext('2d');
@@ -25,8 +23,8 @@
       var Ypoint;
 
       //初期値（サイズ、色、アルファ値）の決定
-      let defSize = 7,
-      defColor = "#000";
+      let defSize = 3,
+          defColor = "#000";
 
       // ストレージの初期化
       var myStorage = localStorage;
@@ -163,7 +161,7 @@
           ctx.drawImage(img, 0, 0);
         }
       }
-    }
+    });
   </script>
   <body>
     <!-- https://www.kabanoki.net/934/ -->
