@@ -1,17 +1,17 @@
-document.addEventListener("DOMContentLoaded", function() {
+function init_canvas(object_id){
   // Inspire from
   // - https://www.kabanoki.net/934/
   // ------------------------------
   // キャンバスオブジェクト
-  var canvas = document.getElementById('canvas0');
-  var ctx = canvas.getContext('2d');
-  var moveflg = 0;
-  var Xpoint;
-  var Ypoint;
+  var canvas = document.getElementById(object_id),
+      ctx = canvas.getContext('2d'),
+      moveflg = 0,
+      Xpoint,
+      Ypoint;
 
   //初期値（サイズ、色、アルファ値）の決定
   let defSize = 3,
-      defColor = "#000";
+      defColor = "#333";
 
   // ストレージの初期化
   var myStorage = localStorage;
@@ -148,4 +148,4 @@ document.addEventListener("DOMContentLoaded", function() {
       ctx.drawImage(img, 0, 0);
     }
   }
-});
+}

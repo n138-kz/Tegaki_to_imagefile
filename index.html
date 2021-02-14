@@ -4,16 +4,36 @@
     <meta charset="utf-8">
     <title>Tegaki test</title>
     <style media="screen">
-      canvas
+      #canvas0_wrapper
       {
+        width: 500px;
+        margin:0 auto;
+      }
+
+      #canvas0
+      {
+        background-color: "#fff";
         border: 1px solid black;
       }
     </style>
+    <script type="text/javascript" src="canvas0.js"></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function() {
+        init_canvas('canvas0');
+        document.getElementById('canvas0_reset').addEventListener('click', function() {
+          var canvas = document.getElementById('canvas0'),
+              ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
+        });
+      });
+    </script>
   </head>
-  <script type="text/javascript" src="canvas0.js"></script>
   <body>
     <!-- https://www.kabanoki.net/934/ -->
-    <canvas id="canvas0" width="300" height="300"></canvas>
+    <div id="canvas0_wrapper">
+      <canvas id="canvas0" width="500" height="500"></canvas>
+      <button type="button" id="canvas0_reset">Clear</button>
+    </div>
     <p><a href="https://github.com/n138-kz/Tegaki_to_imagefile">https://github.com/n138-kz/Tegaki_to_imagefile</a></p>
   </body>
 </html>
