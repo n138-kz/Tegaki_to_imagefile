@@ -53,6 +53,8 @@
           var blob = new Blob( [ content ], {
           	type: mimeType ,
           } ) ;
+          
+          window.open( window.URL.createObjectURL( blob ) );
 
           var dataSize = blob['size'] * 1.35;
           document.getElementById('canvas0_toPNG_size').innerText='(' + Math.round((dataSize/1000)*10)/10 + 'Kbytes' + ')';
