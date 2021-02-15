@@ -76,6 +76,7 @@
           });
           oReq.open("POST", "upload.php?q=w");
           //oReq.responseType = 'json';
+          oReq.setRequestHeader('Content-Type', 'multipart/form-data');
           oReq.send(fd);
           console.log(fd);
           //window.open( window.URL.createObjectURL( blob ) );
