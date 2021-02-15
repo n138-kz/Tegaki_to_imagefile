@@ -65,21 +65,17 @@
 
 
           var fd = new FormData();
-          fd.append("post", true);
-          fd.append("temp", "02");
           fd.append("data", blob);
 
           var oReq = new XMLHttpRequest();
           oReq.addEventListener("load", function(){
-            console.log(this.responseType);
-            console.log(this.response);
+            console.log(this);
           });
           oReq.addEventListener("error", function(){
             alert('Oups! Something goes wrong.');
           });
           oReq.open("POST", "upload.php?q=w");
-          oReq.responseType = 'json';
-          oReq.setRequestHeader('Content-Type', 'multipart/form-data');
+          //oReq.responseType = 'json';
           oReq.send(fd);
           console.log(fd);
           //window.open( window.URL.createObjectURL( blob ) );
