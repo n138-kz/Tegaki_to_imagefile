@@ -53,7 +53,7 @@
           var blob = new Blob( [ content ], {
           	type: mimeType ,
           } ) ;
-          
+
 
           var dataSize = blob['size'] * 1.35;
           document.getElementById('canvas0_toPNG_size').innerText='(' + Math.round((dataSize/1000)*10)/10 + 'Kbytes' + ')';
@@ -62,11 +62,27 @@
             alert('---Warning---\nOver 100kb');
           }
 
-          
-          
-          window.open( window.URL.createObjectURL( blob ) );
+
+
+          let fd = new FormData();
+          fd.append("data", blob);
+
+          var oReq = new XMLHttpRequest();
+          oReq.addEventListener("load", transferComplete);
+          oReq.addEventListener("error", transferFailed);
+          oReq.open("POST", "upload.php");
+          oReq.setRequestHeader( 'Content-Type', 'multipart/form-data' );
+          oReq.send( EncodeHTMLForm( fd ) );
+          //window.open( window.URL.createObjectURL( blob ) );
         });
       });
+      function transferComplete(evt){
+        console.log(this.responseText);
+      }
+      function transferFailed(evt){
+        console.log(this.responseText);
+      }
+
     </script>
   </head>
   <body>
