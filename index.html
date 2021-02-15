@@ -36,7 +36,7 @@
 
           // サーバに送るのは 変数 dataURL の値
           // これが画像データ本体 おおよそ 100kb 用意すればOK
-          console.log(dataURL);
+          console.debug(dataURL);
           localStorage.setItem('canvas_sign', dataURL);
 
           // "iVBORw..."をバイナリに変換
@@ -64,24 +64,27 @@
 
 
 
-          let fd = new FormData();
+          var fd = new FormData();
+          fd.append("post", true);
+          fd.append("temp", "02");
           fd.append("data", blob);
 
           var oReq = new XMLHttpRequest();
-          oReq.addEventListener("load", transferComplete);
-          oReq.addEventListener("error", transferFailed);
-          oReq.open("POST", "upload.php");
-          oReq.setRequestHeader( 'Content-Type', 'multipart/form-data' );
-          oReq.send( EncodeHTMLForm( fd ) );
+          oReq.addEventListener("load", function(){
+            console.log(this.responseType);
+            console.log(this.response);
+          });
+          oReq.addEventListener("error", function(){
+            alert('Oups! Something goes wrong.');
+          });
+          oReq.open("POST", "upload.php?q=w");
+          oReq.responseType = 'json';
+          oReq.setRequestHeader('Content-Type', 'multipart/form-data');
+          oReq.send(fd);
+          console.log(fd);
           //window.open( window.URL.createObjectURL( blob ) );
         });
       });
-      function transferComplete(evt){
-        console.log(this.responseText);
-      }
-      function transferFailed(evt){
-        console.log(this.responseText);
-      }
 
     </script>
   </head>
