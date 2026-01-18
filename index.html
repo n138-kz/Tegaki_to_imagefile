@@ -158,7 +158,7 @@
   </head>
   <body>
     <div id="gh_api_call">
-      <span data-gh="gh_api_item" data-item="refs">main</span>
+      <span data-gh="gh_api_item" data-item="refs">[main]</span>
       <script>
         document.addEventListener("DOMContentLoaded", async ()=>{
           let f=null;
@@ -168,7 +168,9 @@
               type: 'GET',
             }
           );
-          console.log(await f.json());
+          f=await f.json();
+          console.log(f);
+          document.querySelector('[data-gh][data-item="refs"]').innerText=`[${f}]`;
         });
       </script>
     </div>
