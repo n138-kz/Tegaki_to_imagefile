@@ -80,6 +80,7 @@
         item[1].setAttribute('readonly',true);
         item[1].style.display='block';
         item[1].style.width='500px';
+        item[1].setAttribute('onclick','this.select();');
         item[0].appendChild(item[1]);
         document.body.appendChild(item[0]);
       }
