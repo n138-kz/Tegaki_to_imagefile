@@ -5,18 +5,68 @@
     <meta name="viewport" content="width=500">
     <title>Tegaki test</title>
     <style media="screen">
-      #canvas0_wrapper
-      {
+      #canvas0_wrapper {
         width: 500px;
-        margin:0 auto;
       }
-
-      #canvas0
-      {
+      #canvas0 {
         background-color: "#fff";
         border: 1px solid black;
       }
     </style>
+    <script>
+      // LZW-compress a string
+      function lzw_encode(s) {
+          var dict = {};
+          var data = (s + "").split("");
+          var out = [];
+          var currChar;
+          var phrase = data[0];
+          var code = 256;
+          for (var i=1; i<data.length; i++) {
+              currChar=data[i];
+              if (dict[phrase + currChar] != null) {
+                  phrase += currChar;
+              }
+              else {
+                  out.push(phrase.length > 1 ? dict[phrase] : phrase.charCodeAt(0));
+                  dict[phrase + currChar] = code;
+                  code++;
+                  phrase=currChar;
+              }
+          }
+          out.push(phrase.length > 1 ? dict[phrase] : phrase.charCodeAt(0));
+          for (var i=0; i<out.length; i++) {
+              out[i] = String.fromCharCode(out[i]);
+          }
+          return out.join("");
+      }
+
+      // Decompress an LZW-encoded string
+      function lzw_decode(s) {
+          var dict = {};
+          var data = (s + "").split("");
+          var currChar = data[0];
+          var oldPhrase = currChar;
+          var out = [currChar];
+          var code = 256;
+          var phrase;
+          for (var i=1; i<data.length; i++) {
+              var currCode = data[i].charCodeAt(0);
+              if (currCode < 256) {
+                  phrase = data[i];
+              }
+              else {
+                phrase = dict[currCode] ? dict[currCode] : (oldPhrase + currChar);
+              }
+              out.push(phrase);
+              currChar = phrase.charAt(0);
+              dict[code] = oldPhrase + currChar;
+              code++;
+              oldPhrase = phrase;
+          }
+          return out.join("");
+      }
+    </script>
     <script type="text/javascript" src="canvas0.js"></script>
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function() {
@@ -50,10 +100,9 @@
           	content[i] = byteString.charCodeAt( i ) ;
           }
 
-          var blob = new Blob( [ content ], {
+          var blob = new Blob([content], {
           	type: mimeType ,
-          } ) ;
-
+          }) ;
 
           var dataSize = blob['size'] * 1.35;
           document.getElementById('canvas0_toPNG_size').innerText='(' + Math.round((dataSize/1000)*10)/10 + 'Kbytes' + ')';
@@ -61,8 +110,6 @@
           if (dataSize >= ( 100 * 1000 )) {
             alert('---Warning---\nOver 100kb');
           }
-
-
 
           var fd = new FormData();
           fd.append("data", blob);
@@ -79,10 +126,12 @@
           oReq.setRequestHeader('Content-Type', 'multipart/form-data');
           oReq.send(fd);
           console.log(fd);
+          console.log(blob);
+          console.log(lzw_encode(blob));
+          
           //window.open( window.URL.createObjectURL( blob ) );
         });
       });
-
     </script>
   </head>
   <body>
@@ -93,6 +142,13 @@
       <button type="button" id="canvas0_toPNG">画像化</button>
       <span id="canvas0_toPNG_size"></span>
     </div>
-    <p><a href="https://github.com/n138-kz/Tegaki_to_imagefile">https://github.com/n138-kz/Tegaki_to_imagefile</a></p>
+    <p>
+      <a href="https://github.com/n138-kz/Tegaki_to_imagefile">
+        <img
+          src="https://images-ext-1.discordapp.net/external/9GQHCXBSBx5l08jpIAR05fwP-iTQkTMEt-cvQ_YXh0s/https/opengraph.githubassets.com/bcc40925c05483187f5a22ee9d8a15cd96ebdcf0c947d596da01337e3f4e5c39/n138-kz/Tegaki_to_imagefile?format=webp"
+          style="width: 500px;"
+          alt=""
+          ></a>
+    </p>
   </body>
 </html>
