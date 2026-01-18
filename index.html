@@ -68,6 +68,20 @@
           return out.join("");
       }
     </script>
+    <script>
+      function addImgItem(params={}) {
+        const item = [];
+        item[0]=document.createElement('div');
+        item[1]=document.createElement('img');
+        item[1].src=params['dataurl'];
+        item[0].appendChild(item[1]);
+        item[1]=document.createElement('input');
+        item[1].value=params['dataurl'];
+        item[1].setAttribute('readonly',true);
+        item[0].appendChild(item[1]);
+        document.prepend(item[0]);
+      }
+    </script>
     <script type="text/javascript" src="canvas0.js"></script>
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function() {
