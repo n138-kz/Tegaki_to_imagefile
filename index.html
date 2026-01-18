@@ -179,8 +179,10 @@
           );
           f=await f.json();
           console.log(f);
-          f=(f[0].ref!=''&&f[0].ref!=undefined)?f[0].ref:'main';
-          document.querySelector('[data-gh][data-item="refs"]').innerText=`[${f}]`;
+          f=f[0];
+          f.ref=(f.ref!=''&&f.ref!=undefined)?f.ref:'main';
+          f.url=(f.url!=''&&f.url!=undefined)?f.url:'https://github.com/n138-kz/Tegaki_to_imagefile';
+          document.querySelector('[data-gh][data-item="refs"]').innerText=`[${f}] ${url}`;
         });
       </script>
     </div>
