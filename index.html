@@ -160,7 +160,15 @@
     <div id="gh_api_call">
       <span data-gh="gh_api_item" data-item="refs">main</span>
       <script>
-        document.addEventListener("DOMContentLoaded", ()=>{
+        document.addEventListener("DOMContentLoaded", async ()=>{
+          let f=null;
+          f=await fetch(
+            'https://api.github.com/repos/n138-kz/Tegaki_to_imagefile/deployments',
+            {
+              type: 'GET',
+            }
+          );
+          console.log(await f.json());
         });
       </script>
     </div>
