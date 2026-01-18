@@ -166,6 +166,13 @@
     </script>
   </head>
   <body>
+    <!-- https://www.kabanoki.net/934/ -->
+    <div id="canvas0_wrapper">
+      <canvas id="canvas0" width="500" height="500"></canvas>
+      <button type="button" id="canvas0_reset">クリア</button>
+      <button type="button" id="canvas0_toPNG">画像化</button>
+      <span id="canvas0_toPNG_size"></span>
+    </div>
     <div id="gh_api_call">
       <span data-gh="gh_api_item" data-item="refs">[main]</span>
       <script>
@@ -185,13 +192,6 @@
           document.querySelector('[data-gh][data-item="refs"]').innerText=`[${f.ref}] ${f.created_at}`;
         });
       </script>
-    </div>
-    <!-- https://www.kabanoki.net/934/ -->
-    <div id="canvas0_wrapper">
-      <canvas id="canvas0" width="500" height="500"></canvas>
-      <button type="button" id="canvas0_reset">クリア</button>
-      <button type="button" id="canvas0_toPNG">画像化</button>
-      <span id="canvas0_toPNG_size"></span>
     </div>
     <p>
       <a href="https://github.com/n138-kz/Tegaki_to_imagefile">
