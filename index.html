@@ -87,7 +87,11 @@
         item[1].style.width='500px';
         item[1].setAttribute('onclick','this.select();');
         item[0].appendChild(item[1]);
-        document.body.appendChild(item[0]);
+        if (params.exportToId!=undefined&&params.exportToId!=false&&params.exportToId!=null) {
+          document.querySelector(`#${params.exportToId}`).appendChild(item[0]);
+        }else{
+          document.body.appendChild(item[0]);
+        }
       }
     </script>
     <script type="text/javascript" src="canvas0.js"></script>
@@ -156,7 +160,7 @@
           });
           
           //window.open( window.URL.createObjectURL( blob ) );
-          addImgItem({dataurl:dataURL});
+          addImgItem({dataurl:dataURL, exportToId:'canvas0_export'});
         });
       });
     </script>
@@ -195,5 +199,6 @@
           alt=""
           ></a>
     </p>
+    <div id="canvas0_export"></div>
   </body>
 </html>
