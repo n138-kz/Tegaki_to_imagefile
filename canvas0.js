@@ -53,8 +53,7 @@ function init_canvas(object_id){
     }
   }
 
-  function endPoint(e)
-  {
+  function endPoint(e){
 
     if(moveflg === 0)
     {
@@ -78,7 +77,7 @@ function init_canvas(object_id){
     }
   }
 
-  function resetCanvas() {
+  function resetCanvas(){
     ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
   }
 
@@ -140,7 +139,7 @@ function init_canvas(object_id){
     }
   }
 
-  function draw(src) {
+  function draw(src){
     var img = new Image();
     img.src = src;
 
