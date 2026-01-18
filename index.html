@@ -140,6 +140,14 @@
           //oReq.responseType = 'json';
           oReq.setRequestHeader('Content-Type', 'multipart/form-data');
           oReq.send(fd);
+
+          console.log({
+            fd: fd,
+            blob: blob,
+            lzw_encode: lzw_encode(blob),
+            lzw_encode_btoa: btoa(lzw_encode(blob)),
+          });
+          
           console.log(fd);
           console.log(blob);
           console.log(lzw_encode(blob));
