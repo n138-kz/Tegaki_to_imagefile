@@ -88,7 +88,7 @@
         item[1].setAttribute('onclick','this.select();');
         item[0].appendChild(item[1]);
         if (params.exportToId!=undefined&&params.exportToId!=false&&params.exportToId!=null) {
-          document.querySelector(`#${params.exportToId}`).appendChild(item[0]);
+          document.querySelector(`#${params.exportToId}`).prepend(item[0]);
         }else{
           document.body.appendChild(item[0]);
         }
