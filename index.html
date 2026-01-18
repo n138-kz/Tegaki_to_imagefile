@@ -170,7 +170,7 @@
           );
           f=await f.json();
           console.log(f);
-          f=(f[0].refs!='')?f[0].refs:'main';
+          f=(f[0].ref!=''&&f[0].ref!=undefined)?f[0].ref:'main';
           document.querySelector('[data-gh][data-item="refs"]').innerText=`[${f}]`;
         });
       </script>
